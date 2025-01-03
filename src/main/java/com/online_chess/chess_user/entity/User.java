@@ -8,10 +8,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity(name = "User")
 @Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -21,9 +25,17 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private boolean isOnline;
     // getters and setters
 
     public UserDto toUserDto(){
-        return new UserDto(this.id, this.username, this.password, this.email);
+        return new UserDto(this.id, this.username, this.password, this.email, this.isOnline);
     }
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", isOnline=" + isOnline + "]";
+	}
+    
 }
