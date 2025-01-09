@@ -9,7 +9,9 @@ public class UserProfileNotFound extends RuntimeException{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private String msg;
+	@SuppressWarnings("unused")
 	private int code;
 
 }

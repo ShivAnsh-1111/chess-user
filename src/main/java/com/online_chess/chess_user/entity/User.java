@@ -1,5 +1,7 @@
 package com.online_chess.chess_user.entity;
 
+import java.time.LocalDateTime;
+
 import com.online_chess.chess_user.dto.UserDto;
 
 import jakarta.persistence.Entity;
@@ -26,16 +28,17 @@ public class User {
     private String password;
     private String email;
     private boolean isOnline;
+    private LocalDateTime lastActivity;
     // getters and setters
 
     public UserDto toUserDto(){
-        return new UserDto(this.id, this.username, this.password, this.email, this.isOnline);
+        return new UserDto(this.id, this.username, this.password, this.email, this.isOnline, this.lastActivity);
     }
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
-				+ ", isOnline=" + isOnline + "]";
+				+ ", isOnline=" + isOnline + ", lastActivity=" + lastActivity + "]";
 	}
     
 }

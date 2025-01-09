@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.online_chess.chess_user.constants.ChessUserConstants;
 import com.online_chess.chess_user.dto.EmailDto;
+import com.online_chess.chess_user.dto.GameDto;
 import com.online_chess.chess_user.dto.LoginRequest;
 import com.online_chess.chess_user.dto.UserDto;
 import com.online_chess.chess_user.dto.UserProfileDto;
@@ -33,8 +33,7 @@ import lombok.extern.java.Log;
 
 @Log
 @RestController
-@CrossOrigin
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -120,5 +119,29 @@ public class UserController {
     public ResponseEntity<?> userLogout(@PathVariable Long id){
     	UserDto user =userService.userLogout(id);
     	return ResponseEntity.ok(user);
+    }
+    
+    @GetMapping("/update/activity/{id}")
+    public ResponseEntity<?> updateUserActivity(@PathVariable Long id){
+    	User user = userService.updateUserActivity(id);
+    	return ResponseEntity.ok(user);
+    }
+    
+    @GetMapping("/name/{name}")
+    public ResponseEntity<UserDto> getUserByName(@PathVariable("name") String username){
+    	User user = userService.getUserByName(username);
+    	return ResponseEntity.ok(user.toUserDto());
+    }
+    
+    @GetMapping("/game/{id}")
+    public ResponseEntity<GameDto> getUserGame(@PathVariable("id") Long id){
+    	GameDto game = userService.getUserGame(id);
+    	return ResponseEntity.ok(game);
+    }
+    
+    @PostMapping("/game/save")
+    public ResponseEntity<GameDto> saveUserGame(@RequestBody GameDto game){
+    	GameDto savedGame = userService.saveUserGame(game);
+    	return ResponseEntity.ok(savedGame);
     }
 }
