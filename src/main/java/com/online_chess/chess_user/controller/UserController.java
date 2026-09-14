@@ -29,12 +29,14 @@ import com.online_chess.chess_user.response.ProfileDetails;
 import com.online_chess.chess_user.service.UserService;
 
 import jakarta.validation.Valid;
-import lombok.extern.java.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Log
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;

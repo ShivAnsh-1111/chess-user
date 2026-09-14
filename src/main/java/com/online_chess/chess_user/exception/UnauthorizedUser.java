@@ -6,12 +6,20 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class UnauthorizedUser extends RuntimeException{
-	
+ 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String msg;
 	private int code;
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public int getCode() {
+		return code;
+	}
 	
 }

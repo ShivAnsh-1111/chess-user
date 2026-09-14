@@ -7,24 +7,24 @@ spring:
   application:
     name: chess-user
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    password: 4c7b6a1eabe5d3e50a52c534c56ecd3f6b1ca861
-    url: jdbc:mysql://chessn_keephighwe:4c7b6a1eabe5d3e50a52c534c56ecd3f6b1ca861@nnsf9.h.filess.io:3307/chessn_keephighwe
-    username: chessn_keephighwe
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521/FREEPDB1
+    username: myuser
+    password: MyPass123
     hikari:
-      maximum-pool-size: 5  # Max pool size
-      minimum-idle: 1        # Minimum idle connections
-      idle-timeout: 10000    # Idle timeout
-      connection-timeout: 10000  # Connection timeout
-      max-lifetime: 30000   # Max lifetime of connections
-      connection-test-query: SELECT 1
+      maximum-pool-size: 5
+      minimum-idle: 1
+      idle-timeout: 10000
+      connection-timeout: 10000
+      max-lifetime: 30000
+      connection-test-query: SELECT 1 FROM dual
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.OracleDialect
   cloud:
     discovery:
       enabled: true
@@ -38,7 +38,7 @@ spring:
       auto-offset-reset: earliest
     listener:
       missing-topics-fatal: false
-      
+
 eureka:
   client:
     register-with-eureka: true

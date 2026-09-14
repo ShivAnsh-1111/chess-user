@@ -31,11 +31,13 @@ import com.online_chess.chess_user.repository.UserRepository;
 import com.online_chess.chess_user.response.ProfileDetails;
 
 import jakarta.transaction.Transactional;
-import lombok.extern.java.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
-@Log
 public class UserService {
+
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserRepository userRepository;
